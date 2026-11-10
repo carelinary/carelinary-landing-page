@@ -28,27 +28,44 @@ footer .brand {
   flex-shrink: 0;
 }
 
-/* Memperbesar tulisan Carelinary di header */
+/* CARELINARY - UKURAN TULISAN BRAND */
+
+/* Nama Carelinary di header */
 .site-header .brand strong {
-  font-size: 52px !important;
+  font-size: 48px !important;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1;
 }
 
-/* Ukuran slogan di bawah nama Carelinary */
+/* Slogan di bawah nama */
 .site-header .brand small {
-  font-size: 16px !important;
-  letter-spacing: 1.5px;
+  font-size: 14px !important;
+  letter-spacing: 1px;
+  margin-top: 5px;
 }
 
-/* Ukuran untuk layar HP */
-@media (max-width: 768px) {
+/* Nama Carelinary di footer */
+footer .brand strong {
+  font-size: 36px !important;
+}
+
+/* Slogan di footer */
+footer .brand small {
+  font-size: 12px !important;
+}
+
+/* Tampilan HP */
+@media (max-width: 700px) {
   .site-header .brand strong {
     font-size: 30px !important;
   }
 
   .site-header .brand small {
-    font-size: 11px !important;
-    letter-spacing: 0.5px;
+    font-size: 10px !important;
+  }
+
+  .site-header .brand > img {
+    width: 65px !important;
+    max-width: 65px !important;
   }
 }
