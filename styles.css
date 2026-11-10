@@ -147,3 +147,15 @@ footer .brand img {
     font-size: 10px;
   }
 }
+
+/* RAPATKAN HEADER CARELINARY */
+.site-header .nav {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: 76px;
+}
+
+/* Hilangkan jarak tambahan pada header */
+.site-header {
+  padding-bottom: 0 !important;
+}
