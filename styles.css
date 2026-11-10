@@ -4,14 +4,14 @@
 
 /* Nama Carelinary di header */
 .site-header .brand strong {
-  font-size: 48px !important;
+  font-size: 36px !important;
   font-weight: 600;
   line-height: 1;
 }
 
 /* Slogan di bawah nama */
 .site-header .brand small {
-  font-size: 14px !important;
+  font-size: 12px !important;
   letter-spacing: 1px;
   margin-top: 5px;
 }
@@ -72,27 +72,3 @@ footer .brand img {
   }
 }
 
-/* SAMAKAN TULISAN HEADER DENGAN FOOTER */
-
-.site-header .brand strong {
-  font-size: 36px !important;
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.site-header .brand small {
-  font-size: 12px !important;
-  letter-spacing: 1px;
-  margin-top: 4px;
-}
-
-/* Tampilan HP */
-@media (max-width: 700px) {
-  .site-header .brand strong {
-    font-size: 30px !important;
-  }
-
-  .site-header .brand small {
-    font-size: 10px !important;
-  }
-}
