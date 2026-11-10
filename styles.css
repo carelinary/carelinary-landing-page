@@ -72,3 +72,43 @@ footer .brand img {
   }
 }
 
+
+/* BADGE SEGERA HADIR - CARELINARY */
+
+.site-header .brand {
+  position: relative;
+}
+
+.site-header .brand::after {
+  content: "● Segera Hadir di BSD, Tangerang";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+
+  background: #B79A62;
+  color: #183B32;
+  padding: 7px 14px;
+  border-radius: 30px;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  white-space: nowrap;
+}
+
+.site-header .nav {
+  padding-bottom: 40px;
+}
+
+@media (max-width: 600px) {
+  .site-header .brand::after {
+    font-size: 10px;
+    padding: 6px 10px;
+    white-space: normal;
+    max-width: 220px;
+  }
+}
