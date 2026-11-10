@@ -69,3 +69,30 @@ footer .brand small {
     max-width: 65px !important;
   }
 }
+
+/* PERKECIL GAMBAR LOGO CARELINARY 50% */
+
+/* Logo di header */
+.site-header .brand img {
+  width: 55px !important;
+  max-width: 55px !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* Logo di footer */
+footer .brand img {
+  width: 55px !important;
+  max-width: 55px !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* Logo pada tampilan HP */
+@media (max-width: 700px) {
+  .site-header .brand img,
+  footer .brand img {
+    width: 40px !important;
+    max-width: 40px !important;
+  }
+}
