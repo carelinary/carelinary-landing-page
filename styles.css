@@ -159,3 +159,8 @@ footer .brand img {
 .site-header {
   padding-bottom: 0 !important;
 }
+
+/* HAPUS TRUST STRIP CARELINARY */
+.trust-strip {
+  display: none !important;
+}
