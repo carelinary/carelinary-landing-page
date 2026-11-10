@@ -13,10 +13,11 @@ createServer(async (req, res) => {
       let response;
       if (req.method === 'GET') response = GET();
       else if (req.method === 'POST') {
+        const base = `http://${req.headers.host || 'localhost:5500'}`;
         const chunks = [];
         for await (const chunk of req) chunks.push(chunk);
-        response = await POST(new Request('http://localhost:5500/api/interest', {
-          method: 'POST', headers: { 'content-type': req.headers['content-type'] || '', origin: req.headers.origin || 'http://localhost:5500' },
+        response = await POST(new Request(`${base}/api/interest`, {
+          method: 'POST', headers: { 'content-type': req.headers['content-type'] || '', origin: req.headers.origin || base },
           body: Buffer.concat(chunks)
         }));
       } else response = new Response('', { status: 405 });

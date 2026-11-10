@@ -64,3 +64,33 @@ test('does not show success when storage confirmation fails', async () => {
     assert.equal(response.status, 502);
   } finally { globalThis.fetch = oldFetch; }
 });
+
+test('GET confirms registration is open when all release gates are set', async () => {
+  config();
+  assert.equal((await GET().json()).enabled, true);
+});
+
+test('rejects honeypot-filled submissions without calling Apps Script', async () => {
+  config();
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = () => { throw new Error('should not be called'); };
+  try {
+    const response = await POST(request({ ...valid, website: 'spam-link' }));
+    assert.equal(response.status, 400);
+    assert.equal((await response.json()).error, 'Permintaan ditolak.');
+  } finally { globalThis.fetch = oldFetch; }
+});
+
+test('rejects cross-origin requests without calling Apps Script', async () => {
+  config();
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = () => { throw new Error('should not be called'); };
+  try {
+    const response = await POST(new Request('https://www.carelinary.my.id/api/interest', {
+      method: 'POST', headers: { 'content-type': 'application/json', origin: 'https://evil.example.com' },
+      body: JSON.stringify(valid)
+    }));
+    assert.equal(response.status, 403);
+    assert.equal((await response.json()).error, 'Permintaan ditolak.');
+  } finally { globalThis.fetch = oldFetch; }
+});

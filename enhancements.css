@@ -39,4 +39,5 @@ body{font-family:Montserrat,Arial,sans-serif}
 .dialog-close{position:absolute;top:10px;right:15px;border:0;background:none;font-size:27px}
 .wait-card .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
 @media(max-width:700px){.cinematic-hero,.hero-film-layout{min-height:650px}.hero-shade{background:linear-gradient(90deg,#09271fe8,#09271fa8)}.hero-film-layout .hero-content{padding:65px 0 90px}.hero-film-layout h1{font-size:clamp(52px,11vw,72px)}.film-caption{left:0;right:auto;bottom:16px}.condition-grid{grid-template-columns:1fr}.condition-grid article{min-height:0}}
-@media(prefers-reduced-motion:reduce){.cinematic-hero{background-image:url('assets/salmon-plate.jpg')}.hero-film{display:none}}
+@media(prefers-reduced-motion:reduce){.cinematic-hero{background-image:url('assets/salmon-plate.jpg')}.hero-film{display:none}.film-toggle{display:none}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:2px}
