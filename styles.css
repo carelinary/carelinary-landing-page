@@ -112,3 +112,8 @@ footer .brand img {
     max-width: 220px;
   }
 }
+
+/* HAPUS CTA WAITING LIST DI HEADER */
+.site-header .nav-cta {
+  display: none !important;
+}
