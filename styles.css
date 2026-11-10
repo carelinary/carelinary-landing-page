@@ -27,3 +27,28 @@ footer img[src*="logo"] {
 footer .brand {
   flex-shrink: 0;
 }
+
+/* Memperbesar tulisan Carelinary di header */
+.site-header .brand strong {
+  font-size: 52px !important;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Ukuran slogan di bawah nama Carelinary */
+.site-header .brand small {
+  font-size: 16px !important;
+  letter-spacing: 1.5px;
+}
+
+/* Ukuran untuk layar HP */
+@media (max-width: 768px) {
+  .site-header .brand strong {
+    font-size: 30px !important;
+  }
+
+  .site-header .brand small {
+    font-size: 11px !important;
+    letter-spacing: 0.5px;
+  }
+}
