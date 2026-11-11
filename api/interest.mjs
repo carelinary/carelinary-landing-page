@@ -1,12 +1,10 @@
-const programs = new Set(['gerd', 'cardiometabolic', 'other']);
-const meals = new Set(['1', '2', '3', 'consult']);
-const durations = new Set(['5', '10', 'consult']);
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const instagram = /^(?!.*\.\.)(?!.*\.$)[A-Za-z0-9_.]{1,30}$/;
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
-    status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+    status,
+    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
   });
 }
 function enabled() {
@@ -26,32 +24,25 @@ export async function POST(request) {
   let body;
   try {
     const raw = await request.text();
-    if (raw.length > 6000) return json({ error: 'Data terlalu panjang.' }, 413);
+    if (raw.length > 1500) return json({ error: 'Data terlalu panjang.' }, 413);
     body = JSON.parse(raw);
     if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error('Invalid JSON');
   } catch { return json({ error: 'Data tidak dapat dibaca.' }, 400); }
-  if (typeof body.website === 'string' && body.website.trim()) return json({ error: 'Permintaan ditolak.' }, 400);
 
   const name = typeof body.name === 'string' ? body.name.trim() : '';
-  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
-  const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
-  const address = typeof body.address === 'string' ? body.address.trim() : '';
-  const digits = phone.replace(/\D/g, '');
+  const instagramUsername = typeof body.instagram_username === 'string'
+    ? body.instagram_username.trim().replace(/^@/, '') : '';
   if (!uuid.test(body.submission_id || '') || name.length < 2 || name.length > 100 ||
-      !emailPattern.test(email) || email.length > 254 ||
-      digits.length < 8 || digits.length > 15 || phone.length > 24 || !/^[+0-9()\s-]+$/.test(phone) ||
-      address.length < 5 || address.length > 400 ||
-      !programs.has(body.program) || !durations.has(body.duration) || !meals.has(body.meals) || body.consent !== true) {
-    return json({ error: 'Mohon periksa kembali data formulir.' }, 400);
+      !instagram.test(instagramUsername)) {
+    return json({ error: 'Mohon periksa kembali nama dan username Instagram.' }, 400);
   }
 
   const payload = {
     secret: process.env.APPS_SCRIPT_SHARED_SECRET,
     submission_id: body.submission_id,
     submitted_at_utc: new Date().toISOString(),
-    name, email, phone, address, program: body.program, duration: body.duration, meals: body.meals,
-    consent: true, consent_text_version: 'waiting-list-v1',
-    source: 'carelinary.my.id'
+    name,
+    instagram_username: instagramUsername
   };
   try {
     const upstream = await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
