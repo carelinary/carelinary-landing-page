@@ -1,0 +1,43 @@
+/* Targeted additions to the current live design. */
+body{font-family:Montserrat,Arial,sans-serif}
+.site-header .brand::after{font-family:Montserrat,Arial,sans-serif}
+.cinematic-hero{position:relative;min-height:650px;isolation:isolate;background:#102d27 url('assets/salmon-plate.jpg') center/cover no-repeat}
+.hero-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,32,25,.92) 0%,rgba(7,32,25,.80) 38%,rgba(7,32,25,.35) 68%,rgba(7,32,25,.14) 100%);z-index:-1}
+.hero-film-layout{min-height:650px;display:flex;align-items:center;position:relative}
+.hero-film-layout .hero-content{max-width:760px;padding:80px 0 110px}
+.hero-film-layout h1{font-size:clamp(58px,6.4vw,96px);max-width:760px}
+.hero-film-layout .hero-content>p{max-width:540px}
+.film-toggle{margin-top:18px;padding:8px 12px;color:#fff;border:1px solid #ffffff80;background:#183b3270;border-radius:3px;font-size:12px}
+.film-toggle:hover,.film-toggle:focus-visible{background:#183b32}
+.film-caption{position:absolute;bottom:25px;right:0;color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 4px #000}
+.menu-card{display:flex;flex-direction:column}
+.menu-card img{height:235px}
+.menu-copy{display:flex;flex:1;flex-direction:column}
+.menu-copy p{min-height:0;line-height:1.65;margin:8px 0}
+.menu-copy p strong{color:var(--green);font-size:12px}
+.menu-copy>div:last-child{margin-top:auto}
+.macro-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:18px 0}
+.macro-grid div{border:1px solid #e7e3da;padding:8px 10px;background:#faf8f3}
+.macro-grid dt{color:var(--muted);font-size:10px}
+.macro-grid dd{margin:0;color:var(--green);font-size:13px;font-weight:700}
+.condition-grid article{min-height:310px}
+.condition-grid p{font-size:12px;line-height:1.7}
+.condition-source{margin:24px 0 0;color:#d2e0d8;font-size:11px}
+.condition-source a{text-decoration:underline;text-underline-offset:3px}
+.form-status{font-size:12px;color:var(--muted)}
+.bot-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.text-button{background:none;border:0;padding:0;color:var(--terra);text-decoration:underline;cursor:pointer;font-size:inherit}
+.footer-policy{background:none;border:0;padding:0;color:#b7c1b8;text-align:left;font-size:12px;cursor:pointer}
+.footer-policy:hover{color:#fff}
+.site-dialog{border:0;border-radius:6px;max-width:min(620px,calc(100vw - 32px));padding:0;background:var(--cream);color:var(--charcoal);box-shadow:0 25px 70px #0005}
+.site-dialog::backdrop{background:#071e18bb}
+.dialog-inner{position:relative;padding:35px}
+.dialog-inner h2{font-size:42px}
+.dialog-inner p{font-size:13px;line-height:1.7}
+.dialog-inner a{color:var(--terra);text-decoration:underline}
+.dialog-close{position:absolute;top:10px;right:15px;border:0;background:none;font-size:27px}
+.wait-card .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+@media(max-width:700px){.cinematic-hero,.hero-film-layout{min-height:650px}.hero-shade{background:linear-gradient(90deg,#09271fe8,#09271fa8)}.hero-film-layout .hero-content{padding:65px 0 90px}.hero-film-layout h1{font-size:clamp(52px,11vw,72px)}.film-caption{left:0;right:auto;bottom:16px}.condition-grid{grid-template-columns:1fr}.condition-grid article{min-height:0}}
+@media(prefers-reduced-motion:reduce){.cinematic-hero{background-image:url('assets/salmon-plate.jpg')}.hero-film{display:none}.film-toggle{display:none}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:2px}
