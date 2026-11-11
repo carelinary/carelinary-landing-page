@@ -8,6 +8,14 @@ body{font-family:Montserrat,Arial,sans-serif}
 .hero-film-layout .hero-content{max-width:760px;padding:80px 0 110px}
 .hero-film-layout h1{font-size:clamp(58px,6.4vw,96px);max-width:760px}
 .hero-film-layout .hero-content>p{max-width:540px}
+.hero-proof{display:flex;align-items:center;gap:20px;max-width:650px;margin:0 0 13px;padding:14px 18px;border-left:2px solid var(--gold);background:#102d27d9;color:#f7f3ea}
+.hero-proof-score{display:flex;flex:none;flex-direction:column;align-items:flex-start;line-height:1}
+.hero-stars{font-size:20px;letter-spacing:.12em;background:linear-gradient(90deg,var(--gold) 90%,#d4d9d3 90%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero-proof-score strong{font-family:'Cormorant Garamond',Georgia,serif;font-size:42px;line-height:1;color:var(--gold)}
+.hero-proof-score strong span{font-size:25px}
+.hero-proof-copy b{display:block;font-size:11px;line-height:1.5;color:var(--gold)}
+.hero-proof-copy p{font-size:11px;line-height:1.55;margin:3px 0;color:#f7f3ea}
+@media(max-width:600px){.hero-proof{align-items:flex-start;gap:12px;padding:12px}.hero-stars{font-size:15px}.hero-proof-score strong{font-size:34px}.hero-proof-score strong span{font-size:21px}.hero-proof-copy p{font-size:10px}}
 .film-toggle{margin-top:18px;padding:8px 12px;color:#fff;border:1px solid #ffffff80;background:#183b3270;border-radius:3px;font-size:12px}
 .film-toggle:hover,.film-toggle:focus-visible{background:#183b32}
 .film-caption{position:absolute;bottom:25px;right:0;color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 4px #000}
@@ -41,3 +49,31 @@ body{font-family:Montserrat,Arial,sans-serif}
 @media(max-width:700px){.cinematic-hero,.hero-film-layout{min-height:650px}.hero-shade{background:linear-gradient(90deg,#09271fe8,#09271fa8)}.hero-film-layout .hero-content{padding:65px 0 90px}.hero-film-layout h1{font-size:clamp(52px,11vw,72px)}.film-caption{left:0;right:auto;bottom:16px}.condition-grid{grid-template-columns:1fr}.condition-grid article{min-height:0}}
 @media(prefers-reduced-motion:reduce){.cinematic-hero{background-image:url('assets/salmon-plate.jpg')}.hero-film{display:none}.film-toggle{display:none}}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:2px}
+
+/* Paired problem/solution and integrated program content. */
+.challenge-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:start}
+.challenge-list{display:grid;gap:14px}
+.challenge-pair{display:grid;grid-template-columns:48px 1fr;gap:16px;background:#fff;border:1px solid #e7e1d3;padding:24px 28px}
+.challenge-pair .number{line-height:1}
+.challenge-pair h3{font-size:27px;margin:0 0 8px}
+.challenge-pair p{font-size:13px;color:var(--muted);margin:0 0 10px}
+.challenge-pair p:last-child{margin-bottom:0}
+.challenge-pair strong{display:block;color:var(--green);font-size:12px;margin:12px 0 4px}
+.challenge-visual{margin:0;position:relative}
+.challenge-visual img{height:560px;object-fit:cover}
+.challenge-visual figcaption{position:absolute;right:0;bottom:0;max-width:80%;padding:16px 20px;background:var(--green);color:#fff;font-size:11px;line-height:1.5}
+.assessment-example{display:grid;grid-template-columns:.65fr 1fr;gap:50px;align-items:start;background:#eae5d9;border-left:3px solid var(--gold);padding:32px;margin-top:30px}
+.assessment-example h3{font-size:34px;margin:0}
+.assessment-example p{font-size:13px;line-height:1.75;margin:0 0 10px}
+.assessment-example small{display:block;color:var(--muted);font-size:11px;line-height:1.6}
+.program-card{display:flex;flex-direction:column}
+.program-card .program-detail{margin:8px 0 25px;padding-top:16px;border-top:1px solid #e7e1d3}
+.program-card.accent .program-detail{border-color:#ffffff55}
+.program-detail h4{font:700 13px/1.4 Montserrat,Arial,sans-serif;margin:14px 0 5px;color:var(--green)}
+.program-card.accent .program-detail h4{color:var(--gold)}
+.program-detail p{margin:0 0 11px;line-height:1.75}
+.program-card>a{margin-top:auto}
+.program-sources{color:var(--muted)}
+.program-sources a{color:var(--green)}
+@media(max-width:850px){.challenge-grid{grid-template-columns:1fr}.challenge-visual img{height:340px}.assessment-example{grid-template-columns:1fr;gap:16px}}
+@media(max-width:700px){.challenge-grid{gap:20px}.challenge-pair{padding:20px 18px;grid-template-columns:38px 1fr}.challenge-visual figcaption{max-width:100%}.assessment-example{padding:24px}.program-detail h4{font-size:12px}}

@@ -1,5 +1,7 @@
 # Prompt to paste into Kiro AI
 
+> **Archived prompt.** Use `KIRO_PROMPT_REVISI_EN.md` for the current revision.
+
 You are a senior frontend and serverless engineer reviewing the **existing** Carelinary landing page. Work inside the currently opened GitHub checkout of `carelinary/carelinary-landing-page`. This is a revision of an online site, not a request to generate an unrelated replacement.
 
 ## First, read the project

@@ -1,5 +1,7 @@
 # Panduan Carelinary: GitHub → Kiro → Google Sheets → Vercel
 
+> **Dokumen arsip.** Untuk revisi terbaru dan langkah integrasi yang sesuai dengan situs yang sudah tayang, baca `PANDUAN_REVISI_DAN_GOOGLE_SHEETS.md`. Jangan mengikuti nomor commit dan instruksi upload massal di bawah ini.
+
 **Status saat paket diserahkan:** website lama sudah online di `www.carelinary.my.id`. Paket ini dibuat dari commit GitHub terbaru yang diperiksa pada 10 November 2026 (`1e4f441`). Revisi ini belum diterbitkan. Formulir baru tetap nonaktif sampai penyimpanan data dan kebijakan privasi siap.
 
 ## 1. Kenali berkas yang akan diunggah
