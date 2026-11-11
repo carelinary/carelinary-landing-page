@@ -12,7 +12,7 @@ Di GitHub Desktop, pilih repository `carelinary-landing-page`, lakukan **Fetch o
 
 ## 3. Siapkan Google Sheet tanpa menghapus data lama
 
-Gunakan Google Sheet privat yang sudah Anda miliki. Tidak perlu mengubah tab `WaitingList` lama. Script baru akan membuat tab `Leads Brief` secara otomatis saat kiriman pertama. Tab baru berisi `submission_id`, `submitted_at_utc`, `name`, dan `instagram_username`. Dua kolom terakhir adalah satu-satunya data pribadi yang diminta dari pengunjung.
+Gunakan Google Sheet privat yang sudah Anda miliki. Tidak perlu mengubah tab `WaitingList` lama. Script baru akan membuat tab `Leads Brief` secara otomatis saat kiriman pertama. Tab baru berisi `submission_id`, `submitted_at_utc`, `name`, `instagram_username`, dan `submitted_at_wib`. Kolom WIB berformat `YYYY-MM-DD HH:mm:ss` (contoh `2026-11-11 16:30:00`) agar mudah dibaca dan diurutkan; UTC tetap tersimpan sebagai acuan. Hanya nama dan username Instagram yang diminta dari pengunjung. Jika tab `Leads Brief` sudah memiliki empat kolom awal, script akan menambahkan kolom WIB tanpa menghapus data lama.
 
 ## 4. Buat Apps Script baru untuk versi brief
 

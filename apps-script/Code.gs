@@ -2,7 +2,7 @@
 // Script Properties: SPREADSHEET_ID, SHARED_SECRET, NOTIFICATION_EMAIL.
 // Existing WaitingList records are preserved. New leads go to "Leads Brief".
 const SHEET_NAME = 'Leads Brief';
-const HEADERS = ['submission_id', 'submitted_at_utc', 'name', 'instagram_username'];
+const HEADERS = ['submission_id', 'submitted_at_utc', 'name', 'instagram_username', 'submitted_at_wib'];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const INSTAGRAM = /^(?!.*\.\.)(?!.*\.$)[A-Za-z0-9_.]{1,30}$/;
 
@@ -12,6 +12,9 @@ function reply(data) {
 function safeCell(value) {
   var text = String(value);
   return /^[=+\-@]/.test(text) ? "'" + text : text;
+}
+function formatWib(utcTimestamp) {
+  return Utilities.formatDate(new Date(utcTimestamp), 'Asia/Jakarta', 'yyyy-MM-dd HH:mm:ss');
 }
 function doPost(e) {
   try {
@@ -38,17 +41,20 @@ function doPost(e) {
       var spreadsheet = SpreadsheetApp.openById(sheetId);
       var sheet = spreadsheet.getSheetByName(SHEET_NAME) || spreadsheet.insertSheet(SHEET_NAME);
       if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
-      var headers = sheet.getRange(1, 1, 1, HEADERS.length).getDisplayValues()[0];
-      for (var i = 0; i < HEADERS.length; i++) {
+      var headers = sheet.getRange(1, 1, 1, 4).getDisplayValues()[0];
+      for (var i = 0; i < 4; i++) {
         if (headers[i] !== HEADERS[i]) return reply({ ok: false, error: 'headers_mismatch' });
       }
+      var wibHeader = sheet.getRange(1, 5).getDisplayValue();
+      if (wibHeader && wibHeader !== HEADERS[4]) return reply({ ok: false, error: 'headers_mismatch' });
+      if (!wibHeader) sheet.getRange(1, 5).setValue(HEADERS[4]);
       var lastRow = sheet.getLastRow();
       if (lastRow > 1) {
         var existing = sheet.getRange(2, 1, lastRow - 1, 1)
           .createTextFinder(body.submission_id).matchEntireCell(true).findNext();
         if (existing) return reply({ ok: true, submission_id: body.submission_id, duplicate: true });
       }
-      sheet.appendRow([body.submission_id, body.submitted_at_utc, safeCell(name), safeCell(instagramUsername)]);
+      sheet.appendRow([body.submission_id, body.submitted_at_utc, safeCell(name), safeCell(instagramUsername), formatWib(body.submitted_at_utc)]);
       SpreadsheetApp.flush();
     } finally {
       lock.releaseLock();

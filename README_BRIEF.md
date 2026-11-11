@@ -13,7 +13,7 @@ This folder is a complete static landing page and its form backend. It is based 
 - The form asks for **Name** and **Instagram Username** only. The system also generates a submission reference and timestamp for duplicate protection and auditing; visitors do not enter those fields.
 - The form's Privacy Policy popup link is directly below the form.
 - The Thank You popup and privacy wording clearly say Carelinary is in prelaunch.
-- New submissions go to a separate private Google Sheet tab named `Leads Brief`; existing `WaitingList` entries are left intact.
+- New submissions go to a separate private Google Sheet tab named `Leads Brief`, with both UTC and readable WIB submission timestamps; existing `WaitingList` entries are left intact.
 
 ## Local preview
 
