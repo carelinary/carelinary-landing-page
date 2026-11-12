@@ -33,36 +33,25 @@ const scenes = [
   ['assets/scene-05-pengantaran.mp4', 'Ilustrasi konsep · Pengantaran']
 ];
 const film = document.querySelector('#hero-film');
-const filmToggle = document.querySelector('#film-toggle');
 const filmCaption = document.querySelector('#film-caption');
 let sceneIndex = 0;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function setFilmButton(paused) {
-  filmToggle.textContent = paused ? 'Putar video' : 'Jeda video';
-  filmToggle.setAttribute('aria-label', paused ? 'Putar video' : 'Jeda video');
-}
 if (film) {
   if (reducedMotion) {
     film.pause();
-    setFilmButton(true);
   } else {
-    film.play().catch(() => setFilmButton(true));
+    film.play().catch(() => { /* Browser autoplay policy may prevent playback. */ });
   }
   film.addEventListener('ended', () => {
     sceneIndex = (sceneIndex + 1) % scenes.length;
     film.src = scenes[sceneIndex][0];
     filmCaption.textContent = scenes[sceneIndex][1];
     film.load();
-    film.play().catch(() => setFilmButton(true));
+    if (!reducedMotion) film.play().catch(() => { /* Poster remains visible. */ });
   });
   film.addEventListener('error', () => {
     film.style.display = 'none';
-    filmToggle.style.display = 'none';
     filmCaption.textContent = 'Ilustrasi hidangan Carelinary';
-  });
-  filmToggle.addEventListener('click', () => {
-    if (film.paused) film.play().then(() => setFilmButton(false)).catch(() => setFilmButton(true));
-    else { film.pause(); setFilmButton(true); }
   });
 }
 
@@ -104,15 +93,14 @@ form?.addEventListener('submit', async event => {
   const payload = {
     submission_id: pendingSubmissionId || crypto.randomUUID(),
     name: String(data.get('name') || '').trim(),
-    email: String(data.get('email') || '').trim(),
-    phone: String(data.get('phone') || '').trim(),
-    address: String(data.get('address') || '').trim(),
-    program: String(data.get('program') || ''),
-    duration: String(data.get('duration') || ''),
-    meals: String(data.get('meals') || ''),
-    consent: data.get('consent') === 'on',
-    website: String(data.get('website') || '')
+    instagram_username: String(data.get('instagram_username') || '').trim().replace(/^@/, '')
   };
+  if (!/^(?!.*\.\.)[A-Za-z0-9_.]{1,30}$/.test(payload.instagram_username) || payload.instagram_username.endsWith('.')) {
+    feedback.textContent = 'Periksa username Instagram. Gunakan huruf, angka, titik, atau garis bawah tanpa @.';
+    submit.disabled = !formEnabled;
+    submit.textContent = formEnabled ? 'Daftar Waiting List ↗' : 'Pendaftaran belum dibuka';
+    return;
+  }
   pendingSubmissionId = payload.submission_id;
   try {
     const response = await fetch('/api/interest', {
