@@ -12,10 +12,10 @@ Angka gizi dan harga pada kartu menu masih bertanda perkiraan atau ilustratif. M
 
 ## Cara termudah: dari branch GitHub yang sudah disiapkan
 
-Revisi tersedia pada branch `feature/revisi-lp-carelinary-11nov` di repository `carelinary/carelinary-landing-page`. Pull request draft yang sama adalah **#4**.
+Revisi ini berada pada branch baru `feature/carelinary-ringkas-12nov` di repository `carelinary/carelinary-landing-page`. Branch draft sebelumnya tetap terpisah. Setelah branch baru muncul di GitHub, buat pull request baru dari branch ini menuju `main`.
 
-1. Buka GitHub → repository **carelinary-landing-page** → tab **Pull requests** → buka **#4**.
-2. Buka tab **Files changed**. Periksa terutama `index.html`, `enhancements.css`, dan `test/site.test.mjs`.
+1. Buka GitHub → repository **carelinary-landing-page** → pilih branch `feature/carelinary-ringkas-12nov` → klik **Compare & pull request**.
+2. Pastikan **base: main** dan **compare: feature/carelinary-ringkas-12nov**. Buat pull request baru, lalu buka tab **Files changed**. Periksa terutama `index.html`, `enhancements.css`, dan `test/site.test.mjs`.
 3. Tunggu pemeriksaan Vercel pada pull request menjadi **Ready**, lalu buka tautan **Preview** dari komentar Vercel.
 4. Cek tampilan desktop dan ponsel: hero, pertanyaan dan tiga jawaban, buka-tutup ketiga rincian menu, harga tetap terlihat, empat kartu Why Carelinary, serta formulir waiting list.
 5. Setelah Preview sesuai, ubah pull request dari **Draft** menjadi **Ready for review** bila perlu, lalu pilih **Merge pull request**. Penggabungan ke `main` memicu deployment Production melalui integrasi GitHub–Vercel yang sudah ada.
@@ -32,4 +32,4 @@ ZIP berisi seluruh berkas website, bukan satu berkas yang diunggah sebagai ZIP k
 5. Isi ringkasan commit, klik **Commit to [nama branch]**, lalu **Push origin** atau **Publish branch**.
 6. Buka repository di browser, buat pull request dari branch kerja menuju `main`, lalu ikuti pemeriksaan Preview di atas.
 
-Untuk revisi saat ini, gunakan **cara termudah** karena branch dan pull request sudah tersedia. Mengunggah ZIP lagi akan membuat perubahan ganda.
+Untuk revisi saat ini, gunakan **cara termudah** karena branch baru sudah disiapkan. Mengunggah ZIP lagi ke branch yang sama akan membuat perubahan ganda.
