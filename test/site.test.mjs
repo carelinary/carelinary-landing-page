@@ -29,7 +29,11 @@ test('launch page has a two-field form in the hero and five concept videos', asy
     assert.ok(html.includes(label));
   }
   assert.ok(!html.includes('Bagaimana satu menu dipertimbangkan?'));
-  assert.ok(html.includes('Harus menjaga pola makan karena kondisi kesehatan'));
+  assert.ok(html.includes('Kondisi kesehatanmu belum membaik?'));
+  assert.equal((html.match(/class="menu-details"/g) || []).length, 3);
+  assert.equal((html.match(/Pengen tahu lebih lanjut menu ini\?/g) || []).length, 3);
+  assert.equal((html.match(/class="menu-price"/g) || []).length, 3);
+  assert.ok(!html.includes('class="trust-strip"'));
   assert.ok(html.includes('Carelinary menghadirkan <em>2 fokus program.</em>'));
   assert.ok(html.includes("What we've created for you."));
   assert.ok(html.includes('Why Carelinary?'));
