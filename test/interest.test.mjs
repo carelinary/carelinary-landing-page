@@ -4,9 +4,7 @@ import { GET, POST } from '../api/interest.mjs';
 
 const valid = {
   submission_id: '89d4ec16-21ab-47c8-bf0e-a32661b8a69c',
-  name: 'Test Person', email: 'test@example.com', phone: '081234567890',
-  address: 'BSD, Tangerang Selatan', program: 'gerd', duration: '5', meals: '1',
-  consent: true, website: ''
+  name: 'Test Person', instagram_username: 'test.person'
 };
 function request(data = valid, origin = 'https://www.carelinary.my.id') {
   return new Request(`${origin}/api/interest`, {
@@ -32,9 +30,9 @@ test('rejects invalid input without calling Apps Script', async () => {
   const oldFetch = globalThis.fetch;
   globalThis.fetch = () => { throw new Error('should not be called'); };
   try {
-    const response = await POST(request({ ...valid, consent: false }));
+    const response = await POST(request({ ...valid, instagram_username: 'invalid username' }));
     assert.equal(response.status, 400);
-    assert.equal((await response.json()).error, 'Mohon periksa kembali data formulir.');
+    assert.equal((await response.json()).error, 'Mohon periksa kembali nama dan username Instagram.');
   } finally { globalThis.fetch = oldFetch; }
 });
 
@@ -50,8 +48,8 @@ test('shows success only after Apps Script confirms the same submission', async 
     const response = await POST(request());
     assert.equal(response.status, 200);
     assert.equal((await response.json()).ok, true);
-    assert.equal(forwarded.email, 'test@example.com');
-    assert.equal(forwarded.consent_text_version, 'waiting-list-v1');
+    assert.equal(forwarded.instagram_username, 'test.person');
+    assert.equal(forwarded.email, undefined);
   } finally { globalThis.fetch = oldFetch; }
 });
 
@@ -70,14 +68,14 @@ test('GET confirms registration is open when all release gates are set', async (
   assert.equal((await GET().json()).enabled, true);
 });
 
-test('rejects honeypot-filled submissions without calling Apps Script', async () => {
+test('rejects a malformed Instagram username without calling Apps Script', async () => {
   config();
   const oldFetch = globalThis.fetch;
   globalThis.fetch = () => { throw new Error('should not be called'); };
   try {
-    const response = await POST(request({ ...valid, website: 'spam-link' }));
+    const response = await POST(request({ ...valid, instagram_username: 'bad..name' }));
     assert.equal(response.status, 400);
-    assert.equal((await response.json()).error, 'Permintaan ditolak.');
+    assert.equal((await response.json()).error, 'Mohon periksa kembali nama dan username Instagram.');
   } finally { globalThis.fetch = oldFetch; }
 });
 
